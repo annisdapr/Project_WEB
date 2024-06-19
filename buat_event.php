@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Ambil divisi dari database
-$query_divisi = "SELECT id, name FROM divisi";
+$query_divisi = "SELECT id, nama_divisi FROM divisi";
 $result_divisi = mysqli_query($koneksi, $query_divisi);
 ?>
 <!DOCTYPE html>
