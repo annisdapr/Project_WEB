@@ -61,11 +61,11 @@ if (isset($_SESSION['user_id'])) {
                         UKM
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownUKM">
-                        <a class="dropdown-item" href="#">Agama</a>
-                        <a class="dropdown-item" href="#">Olahraga</a>
-                        <a class="dropdown-item" href="#">Kemahasiswaan</a>
-                        <a class="dropdown-item" href="#">Minat & Bakat</a>
-                        <a class="dropdown-item" href="#">Seni</a>
+                        <a class="dropdown-item" href="lihat_ukm.php?kategori=Agama">Agama</a>
+                        <a class="dropdown-item" href="lihat_ukm.php?kategori=Olahraga">Olahraga</a>
+                        <a class="dropdown-item" href="lihat_ukm.php?kategori=Kemahasiswaan">Kemahasiswaan</a>
+                        <a class="dropdown-item" href="lihat_ukm.php?kategori=Minat & Bakat">Minat & Bakat</a>
+                        <a class="dropdown-item" href="lihat_ukm.php?kategori=Seni">Seni</a>
                     </div>
                 </li>
                 <li class="nav-item">
