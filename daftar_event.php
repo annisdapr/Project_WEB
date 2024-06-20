@@ -20,7 +20,7 @@ $event = mysqli_fetch_assoc($result_event);
 $divisi_event = $event['divisi'];
 
 // Query untuk mengambil semua divisi
-$query_divisi = "SELECT id, name FROM divisi";
+$query_divisi = "SELECT id, nama_divisi FROM divisi";
 $result_divisi = mysqli_query($koneksi, $query_divisi);
 
 // Buat array divisi yang valid berdasarkan event
@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select class="form-control" id="divisi1" name="divisi1" required onchange="updateDivisi2Options()">
                         <option value="">Pilih Divisi</option>
                         <?php foreach ($divisi_valid as $divisi): ?>
-                            <option value="<?php echo $divisi['id']; ?>"><?php echo $divisi['name']; ?></option>
+                            <option value="<?php echo $divisi['id']; ?>"><?php echo $divisi['nama_divisi']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select class="form-control" id="divisi2" name="divisi2" required>
                         <option value="">Pilih Divisi</option>
                         <?php foreach ($divisi_valid as $divisi): ?>
-                            <option value="<?php echo $divisi['id']; ?>"><?php echo $divisi['name']; ?></option>
+                            <option value="<?php echo $divisi['id']; ?>"><?php echo $divisi['nama_divisi']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
