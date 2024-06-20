@@ -63,4 +63,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p>Belum punya akun? <a href="register.php">Daftar</a></p>
     </div>
 </body>
+
 </html>

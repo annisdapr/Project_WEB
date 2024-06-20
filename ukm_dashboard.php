@@ -38,10 +38,19 @@ $history = mysqli_fetch_all($result_history, MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UKM Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .foot{
+                display: flex;
+                padding: 12px;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex: 1 0 0;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">UKM Dashboard</a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
+        <a class="navbar-brand" href="#"><img src="image/logofix1.png" alt=""> UKM Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -118,4 +127,16 @@ $history = mysqli_fetch_all($result_history, MYSQLI_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<footer class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
+    <div class="foot" style="justify-content: space-between">
+        <p style="color: #fff;">© 2024 U-COMM. All rights reserved.</p>
+        <div >
+            <img src="image\github.svg" alt="" href="#">
+            <img src="image\dribbble.svg" alt="" href="#">
+            <img src="image\facebook-f.svg" alt="" href="#">
+            <img src="image\twitter.svg" alt="" href="#">
+        </div>
+    </div>
+    
+</footer>
 </html>

@@ -30,6 +30,15 @@ if (isset($_GET['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pendaftar</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .foot{
+                display: flex;
+                padding: 12px;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex: 1 0 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-4">
@@ -88,4 +97,16 @@ if (isset($_GET['user_id'])) {
         </table>
     </div>
 </body>
+<footer class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
+    <div class="foot" style="justify-content: space-between">
+        <p style="color: #fff;">© 2024 U-COMM. All rights reserved.</p>
+        <div >
+            <img src="image\github.svg" alt="" href="#">
+            <img src="image\dribbble.svg" alt="" href="#">
+            <img src="image\facebook-f.svg" alt="" href="#">
+            <img src="image\twitter.svg" alt="" href="#">
+        </div>
+    </div>
+    
+</footer>
 </html>
