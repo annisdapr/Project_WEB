@@ -7,6 +7,13 @@ $query_events = "SELECT * FROM events WHERE NOW() BETWEEN start_date AND end_dat
 $result_events = mysqli_query($koneksi, $query_events);
 $events = mysqli_fetch_all($result_events, MYSQLI_ASSOC);
 
+
+// Ambil data events yang di-highlight
+$query_highlighted_events = "SELECT * FROM events WHERE highlight = 'ya'";
+$result_highlighted_events = mysqli_query($koneksi, $query_highlighted_events);
+$highlighted_events = mysqli_fetch_all($result_highlighted_events, MYSQLI_ASSOC);
+
+
 // Periksa apakah pengguna sudah login
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -54,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUKM" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="uploaded_avatars/<?php echo $_SESSION['avatar']; ?>" class="rounded-circle" alt="" width="30" height="30"> <?php echo $_SESSION['name']; ?>
+                        <img src=<?php echo $_SESSION['avatar']; ?> class="rounded-circle" alt="Avatar" width="30" height="30"> <?php echo $_SESSION['name']; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                             <a class="dropdown-item" href="profile.php">Profil</a>
@@ -95,10 +102,10 @@ if (isset($_SESSION['user_id'])) {
                 <?php endif; ?>
             </ul>
         </div>
-    </nav>
+    </nav>    
 
 <!-- Caraousel -->
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="image/banner1bismillah.png" class="d-block w-100" alt="...">
@@ -118,7 +125,31 @@ if (isset($_SESSION['user_id'])) {
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> -->
+    <!-- Highlight Carrousel -->
+
+    <!-- Highlight Carrousel -->
+    <div id="highlightCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <?php foreach ($highlighted_events as $index => $event): ?>
+            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                <img src="<?php echo $event['header_image']; ?>" class="d-block w-100" alt="Event Image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5><?php echo $event['name']; ?></h5>
+                    <p><?php echo $event['deskripsi']; ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <a class="carousel-control-prev" href="#highlightCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#highlightCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div> 
     <!-- Ongoing Oprec Section -->
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">

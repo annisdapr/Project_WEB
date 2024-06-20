@@ -8,44 +8,40 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Ambil parameter category dari query string
-$category = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+// Ambil parameter id dari query string
+$ukm_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// Query untuk mengambil data UKM berdasarkan kategori
-$sql = "SELECT * FROM ukm WHERE kategori = ?";
+// Query untuk mengambil data UKM berdasarkan ID
+$sql = "SELECT * FROM ukm WHERE id = ?";
 $stmt = $koneksi->prepare($sql);
 
 if ($stmt) {
-    $stmt->bind_param("s", $category);
+    $stmt->bind_param("i", $ukm_id);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    // Data UKM
-    $ukms = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $ukms[] = $row;
-        }
+    $ukm = $result->fetch_assoc();
+    
+    if (!$ukm) {
+        echo "UKM tidak ditemukan.";
+        exit;
     }
 
     $stmt->close();
 } else {
     // Jika statement gagal dipersiapkan, beri pesan kesalahan
-    die("Failed to prepare statement: " . $conn->error);
+    die("Failed to prepare statement: " . $koneksi->error);
 }
 
 $koneksi->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail UKM</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>UKM Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .foot{
                 display: flex;
@@ -53,9 +49,6 @@ $koneksi->close();
                 justify-content: space-between;
                 align-items: flex-start;
                 flex: 1 0 0;
-        }
-        .card {
-            cursor: pointer;
         }
     </style>
 </head>
@@ -111,41 +104,20 @@ $koneksi->close();
             </ul>
         </div>
     </nav>   
-<!-- End of Navbar -->
-    <div class="container">
-        <div class="row mt-4">
-            <?php if (!empty($ukms)): ?>
-                <?php foreach ($ukms as $ukm): ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4" onclick="window.location.href='detail_ukm.php?id=<?php echo $ukm['id']; ?>'">
-                        <img src="<?php echo htmlspecialchars($ukm['avatar']); ?>" class="card-img-top" alt="UKM Image">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($ukm['name']); ?></h5>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div class="col-12">
-                    <p class="text-center">Tidak ada UKM dalam kategori ini.</p>
-                </div>
-            <?php endif; ?>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="<?php echo $ukm['avatar']; ?>" class="img-fluid rounded-circle" alt="UKM Avatar">
+            </div>
+            <div class="col-md-8">
+                <h2><?php echo $ukm['name']; ?></h2>
+                <p>Email: <?php echo $ukm['email']; ?></p>
+                <p>Instagram: <?php echo $ukm['instagram']; ?></p>
+                <p>Deskripsi: <?php echo $ukm['deskripsi']; ?></p>
+            </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-<footer class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
-    <div class="foot" style="justify-content: space-between">
-        <p style="color: #fff;">© 2024 U-COMM. All rights reserved.</p>
-        <div >
-            <img src="image\github.svg" alt="" href="#">
-            <img src="image\dribbble.svg" alt="" href="#">
-            <img src="image\facebook-f.svg" alt="" href="#">
-            <img src="image\twitter.svg" alt="" href="#">
-        </div>
-    </div>
-    
-</footer>
 </html>

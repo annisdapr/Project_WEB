@@ -70,7 +70,7 @@ if ($role == 'student') {
         }
     </style>
 </head>
-<body>
+<body>        
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
         <a class="navbar-brand" href="#"><img src="image/logofix1.png" alt=""></a>
         
@@ -80,7 +80,7 @@ if ($role == 'student') {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUKM" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,7 +106,7 @@ if ($role == 'student') {
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="uploaded_avatars/<?php echo $_SESSION['avatar']; ?>" class="rounded-circle" alt="" width="30" height="30"> <?php echo $_SESSION['name']; ?>
+                        <img src=<?php echo $avatar; ?> class="rounded-circle" alt="Avatar" width="30" height="30"> <?php echo $name; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                             <a class="dropdown-item" href="profile.php">Profil</a>
@@ -121,62 +121,14 @@ if ($role == 'student') {
                 <?php endif; ?>
             </ul>
         </div>
-    </nav>        <a class="navbar-brand" href="#"><img src="image/logofix1.png" alt=""></a>
-        
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUKM" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        UKM
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownUKM">
-                        <a class="dropdown-item" href="#">Agama</a>
-                        <a class="dropdown-item" href="#">Olahraga</a>
-                        <a class="dropdown-item" href="#">Kemahasiswaan</a>
-                        <a class="dropdown-item" href="#">Minat & Bakat</a>
-                        <a class="dropdown-item" href="#">Seni</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Informasi</a>
-                </li>
-            </ul>
-            <form class="form-inline ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><img src="image/search.png" alt=""></button>
-            </form>
-            <ul class="navbar-nav ml-2">
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="uploaded_avatars/<?php echo $_SESSION['avatar']; ?>" class="rounded-circle" alt="" width="30" height="30"> <?php echo $_SESSION['name']; ?>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                            <a class="dropdown-item" href="profile.php">Profil</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Logout</a>
-                        </div>
-                    </li>
-                <?php else: ?>
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="login.php">Masuk</a>
-                    </li>
-                <?php endif; ?>
-            </ul>
-        </div>
-    </nav>
-
+    </nav>    
+     
     <div class="container mt-5">
         <?php if ($role == 'student'): ?>
             <div class="row">
                 <div class="col-md-3">
-                    <img src="uploaded_avatars/<?php echo $avatar; ?>" class="rounded-circle img-thumbnail" alt="Avatar" width="150" height="150">
+                    <img src="<?php echo $avatar; ?>" class="rounded-circle img-thumbnail" alt="Avatar" width="150" height="150">
+                    <!-- <img src="<?php echo $ukm['avatar']; ?>" class="img-fluid rounded-circle" alt="UKM Avatar"> -->
                 </div>
                 <div class="col-md-9">
                     <h2><?php echo $name; ?></h2>
@@ -186,6 +138,7 @@ if ($role == 'student') {
                     <p><strong>Fakultas:</strong> <?php echo $fakultas; ?></p>
                     <p><strong>NIM:</strong> <?php echo $nim; ?></p>
                     <p><strong>Phone:</strong> <?php echo $phone; ?></p>
+                    <a href="edit_profil_mhs.php" class="btn btn-primary">Edit Profile</a>
                 </div>
             </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2024 at 02:47 PM
+-- Generation Time: Jun 21, 2024 at 01:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,15 +66,16 @@ CREATE TABLE `events` (
   `contact_person_id_line` varchar(100) DEFAULT NULL,
   `contact_person_phone` varchar(20) DEFAULT NULL,
   `header_image` varchar(255) DEFAULT NULL,
-  `divisi` int(11) DEFAULT 0
+  `divisi` int(11) DEFAULT 0,
+  `highlight` enum('ya','tidak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `ukm_id`, `name`, `type`, `deskripsi`, `start_date`, `end_date`, `total_participants`, `requirements`, `additional_requirements`, `contact_person_name`, `contact_person_id_line`, `contact_person_phone`, `header_image`, `divisi`) VALUES
-(4, 2, 'kernel session', 'kepanitiaan', 'blblblbbl', '2024-06-11', '2024-06-30', 30, 'KTM,CV,KHS', 'smt 4', 'dadang', 'uhuy', '087755439320', '', 7);
+INSERT INTO `events` (`id`, `ukm_id`, `name`, `type`, `deskripsi`, `start_date`, `end_date`, `total_participants`, `requirements`, `additional_requirements`, `contact_person_name`, `contact_person_id_line`, `contact_person_phone`, `header_image`, `divisi`, `highlight`) VALUES
+(4, 2, 'Open Recuitmen Staff Bela Negara', 'kepanitiaan', 'Acara Aktualisasi Bela Negara dalam rangka Merdeka Belajar Kampus Merdeka ini merupakan kegiatan yang sengaja dibuat oleh UPN Veteran Jakarta untuk menanamkan nilai-nilai Bela Negara bagi mahasiswa', '2024-06-11', '2024-06-30', 30, 'KTM,CV,KHS', 'smt 4', 'dadang', 'uhuy', '087755439320', 'image\\banner1bismillah.png', 7, 'ya');
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,8 @@ CREATE TABLE `ukm` (
 --
 
 INSERT INTO `ukm` (`id`, `user_id`, `name`, `deskripsi`, `email`, `instagram`, `avatar`, `kategori`) VALUES
-(2, 7, 'Buveja', NULL, NULL, NULL, NULL, 'Olahraga');
+(2, 7, 'Buveja', 'UKM Bulutangkis UPN Veteran Jakarta berdiri pada tanggal 19 juli 2002. UKM Bulutangkis ini biasa dikenal dengan baik oleh mahasiswa dengan nama BUVEJA (Bulutangkis Veteran Jakarta). Lokasi UKM Bulutangkis berada di Gedung Dwi Sartika Fakultas Ilmu Komputer lantai dasar. Di UKM ini mahasiswa menyalurkan hobi serta bakat dan menjadikan cabang olahraga ini menjadi sebuah prestasi.', 'buveja@gmail.com', 'buveja', 'image\\jujitsu.png', 'Olahraga'),
+(3, 8, 'Jujitsu UPN Veteran Jakarta', 'Jujitsu merupakan jenis seni bela diri dari Asia yang dikenal dengan teknik dasar unik dan memiliki tingkatan sabuk.', 'jujitsu@gmail.com', 'jujitsu', 'image\\buveja.png', 'Olahraga');
 
 -- --------------------------------------------------------
 
@@ -168,9 +170,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `password`, `role`, `jurusan`, `fakultas`, `nim`, `phone`, `avatar`) VALUES
-(1, 'dadang170', 'Dadang Sunandar', 'annissadwiaprilia@gmail.com', '$2y$10$wOemhEKX0BOTT2g9e3GLi.Db4U/3jdZeyO.j73oyGVYmj.QtCzSUy', 'student', NULL, NULL, NULL, NULL, NULL),
+(1, 'dadang170', 'Dadang Sunandar', 'annissadwiaprilia@gmail.com', '$2y$10$wOemhEKX0BOTT2g9e3GLi.Db4U/3jdZeyO.j73oyGVYmj.QtCzSUy', 'student', NULL, NULL, NULL, NULL, 'image\\dadang.png'),
 (3, 'mincom77', 'tatang', 'santuybeobeo@gmail.com', '$2y$10$8P3aas/ucJGstDPwUQQ2Uefse4lUPBGYfy3C9DPz59BBawpf9f10m', 'admin', NULL, NULL, NULL, NULL, NULL),
-(7, 'buveja88', 'Buveja', '2210511148@mahasiswa.upnvj.ac.id', '$2y$10$oLZN3baaff6iYURG8Kn4I.gZsfzecJm0xuDrmAatEnf2ciEoWnhDG', 'ukm', NULL, NULL, NULL, NULL, NULL);
+(7, 'buveja88', 'Buveja', '2210511148@mahasiswa.upnvj.ac.id', '$2y$10$oLZN3baaff6iYURG8Kn4I.gZsfzecJm0xuDrmAatEnf2ciEoWnhDG', 'ukm', NULL, NULL, NULL, NULL, NULL),
+(8, 'Jujitsu', 'Jujitsu UPN Veteran Jakarta', 'jujitsu@gmail.com', '$2y$10$nPkZ9I5MDsab1SXu4ZR1y.EovqGz2LdMLZZ/IAZixRNeK6VaaPXTS', 'ukm', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,13 +273,13 @@ ALTER TABLE `requirements`
 -- AUTO_INCREMENT for table `ukm`
 --
 ALTER TABLE `ukm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
