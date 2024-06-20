@@ -26,19 +26,28 @@ if (isset($_SESSION['user_id'])) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U-COMM - Homepage</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        .foot{
+                display: flex;
+                padding: 12px;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex: 1 0 0;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">U-COMM</a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
+        <a class="navbar-brand" href="#"><img src="image/logofix1.png" alt=""></a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -65,13 +74,13 @@ if (isset($_SESSION['user_id'])) {
             </ul>
             <form class="form-inline ml-auto">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><img src="image/search.png" alt=""></button>
             </form>
             <ul class="navbar-nav ml-2">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="uploaded_avatars/<?php echo $_SESSION['avatar']; ?>" class="rounded-circle" alt="Avatar" width="30" height="30"> <?php echo $_SESSION['name']; ?>
+                            <img src="uploaded_avatars/<?php echo $_SESSION['avatar']; ?>" class="rounded-circle" alt="" width="30" height="30"> <?php echo $_SESSION['name']; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                             <a class="dropdown-item" href="profile.php">Profil</a>
@@ -88,45 +97,32 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </nav>
 
-    <!-- Highlight Carrousel -->
-    <div id="highlightCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="image1.jpg" class="d-block w-100" alt="Event 1">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Event 1</h5>
-                    <p>Deskripsi Event 1</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="image2.jpg" class="d-block w-100" alt="Event 2">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Event 2</h5>
-                    <p>Deskripsi Event 2</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="image3.jpg" class="d-block w-100" alt="Event 3">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Event 3</h5>
-                    <p>Deskripsi Event 3</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#highlightCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#highlightCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+<!-- Caraousel -->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="image/banner1bismillah.png" class="d-block w-100" alt="...">
     </div>
-
+    <div class="carousel-item">
+      <img src="image/banner2.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="image/banner3fixbgt.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
     <!-- Ongoing Oprec Section -->
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Ongoing Oprec</h2>
+            <h2>On Going</h2>
             <div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,9 +144,8 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
-        
         <!-- Oprec Cards -->
-        <div class="row mt-3">
+        <div class="row mt-4">
         <?php foreach ($events as $event): ?>
     <div class="col-md-4">
         <div class="card mb-4">
@@ -178,9 +173,9 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
     $('.add-to-wishlist').click(function() {
@@ -203,4 +198,16 @@ if (isset($_SESSION['user_id'])) {
 });
     </script>
 </body>
+<footer class="navbar navbar-expand-lg navbar-light" style="background-color: #8BABB8;">
+    <div class="foot" style="justify-content: space-between">
+        <p style="color: #fff;">© 2024 U-COMM. All rights reserved.</p>
+        <div >
+            <img src="image\github.svg" alt="" href="#">
+            <img src="image\dribbble.svg" alt="" href="#">
+            <img src="image\facebook-f.svg" alt="" href="#">
+            <img src="image\twitter.svg" alt="" href="#">
+        </div>
+    </div>
+    
+</footer>
 </html>

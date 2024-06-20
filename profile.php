@@ -27,7 +27,7 @@ if ($role == 'student') {
     $query_wishlist = "
         SELECT events.id, events.name, events.header_image, events.start_date, events.end_date 
         FROM wishlist 
-        JOIN events ON wishlist.event_id = events.id 
+        JOIN events ON wishlist.event_id = events.id
         WHERE wishlist.user_id = '$user_id'
     ";
     $result_wishlist = mysqli_query($koneksi, $query_wishlist);
